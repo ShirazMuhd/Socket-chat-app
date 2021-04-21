@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+      body {
+        background-color: #1a1a1a;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffc107;
+      }
+      .inp {
+        width: 18rem;
+        padding: 1rem;
+        padding-left: 1rem;
+        margin-right: 0px;
+        border-radius: 25px 0px 0px 25px;
+        border: none;
+        font-size: 19px;
+      }
+      #button {
+        border-radius: 0px 25px 25px 0px;
+        padding: 1rem;
+        margin-left: 0px;
+        background-color: #ffc107;
+        border: none;
+        cursor: pointer;
+        font-size: 19px;
+      }
+      ul{
+          list-style-type: none;
+      }
+      .msg-list{
+          background-color: #ffc107;
+          color: black;
+          display: block;
+          padding: 0.5rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
+          border: none;
+          border-radius: 50px;
+          font-size: 15px;
+          margin-top: 1rem;
+      }
+    </style>
+    <center>
+      <h1>Chat app</h1>
+    </center>
+
+    <center>
+      
+        <input id="data" placeholder="Enter message" type="text" class="inp" />
+        <button value="send" id="button">Send</button>
+      
+    </center>
+
+    <center>
+        <div id="ul" style="margin-top: 1rem;">
+        </div>
+    </center>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      var button = document
+        .getElementById("button")
+        .addEventListener("click", () => {
+          var msg = document.getElementById("data").value;
+          console.log(msg);
+          socket.emit("message", msg);
+        });
+        socket.on('in-msg',(data)=>{
+            var gag=document.createElement('button')
+            gag.innerHTML=data
+            gag.classList.add('msg-list')
+            document.getElementById('ul').appendChild(gag)
+        })
+    </script>
+  </body>
+</html>
