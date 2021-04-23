@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Chat app</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -26,21 +26,6 @@
     </center>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      var button = document
-        .getElementById("button")
-        .addEventListener("click", () => {
-          var msg = document.getElementById("data").value;
-          socket.emit("message", msg);
-          document.getElementById("data").value="";
-        });
-        socket.on('in-msg',(data)=>{
-            var gag=document.createElement('button')
-            gag.innerHTML=data
-            gag.classList.add('msg-list')
-            document.getElementById('ul').appendChild(gag)
-        })
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
